@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./typography-fixes.css";
 
 export const metadata: Metadata = {
   title: "Phiếu Bảo Hành | Watch Luxury",
