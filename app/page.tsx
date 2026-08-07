@@ -69,10 +69,10 @@ export default function Home() {
     ctx.fillStyle = "#fbfaf7"; ctx.fillRect(0, 0, 1240, 1754);
     ctx.fillStyle = navy; ctx.fillRect(0, 0, 1240, 292);
     ctx.fillStyle = gold; ctx.fillRect(0, 292, 1240, 9);
-    ctx.textAlign = "center"; ctx.fillStyle = "#fff"; ctx.font = "700 31px Arial"; ctx.fillText(data.storeName || "TÊN CỬA HÀNG", 620, 78);
-    ctx.fillStyle = "#d7c49d"; ctx.font = "16px Arial"; ctx.fillText("UY TÍN TẠO NÊN GIÁ TRỊ", 620, 111);
-    ctx.font = "700 52px Georgia"; ctx.fillStyle = "#fff"; ctx.fillText("PHIẾU BẢO HÀNH", 620, 190);
-    ctx.font = "18px Arial"; ctx.fillStyle = "#dfe5ec"; ctx.fillText(`MÃ PHIẾU: ${warrantyCode}`, 620, 234);
+    ctx.textAlign = "center"; ctx.fillStyle = "#fff"; ctx.font = '700 31px "Times New Roman"'; ctx.fillText(data.storeName || "TÊN CỬA HÀNG", 620, 78);
+    ctx.fillStyle = "#d7c49d"; ctx.font = '16px "Times New Roman"'; ctx.fillText("UY TÍN TẠO NÊN GIÁ TRỊ", 620, 111);
+    ctx.font = '700 52px "Times New Roman"'; ctx.fillStyle = "#fff"; ctx.fillText("PHIẾU BẢO HÀNH", 620, 190);
+    ctx.font = '18px "Times New Roman"'; ctx.fillStyle = "#dfe5ec"; ctx.fillText(`MÃ PHIẾU: ${warrantyCode}`, 620, 234);
     const line = (y: number) => { ctx.strokeStyle = "#d9d5cb"; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(86, y); ctx.lineTo(1154, y); ctx.stroke(); };
     const wrap = (text: string, x: number, y: number, maxWidth: number, lineHeight: number, maxLines = 3) => {
       const words = (text || "—").split(" "); let current = "", row = 0;
@@ -82,10 +82,10 @@ export default function Home() {
       }
       ctx.fillText(current, x, y + row * lineHeight);
     };
-    const section = (title: string, y: number) => { ctx.textAlign = "left"; ctx.fillStyle = gold; ctx.font = "700 18px Arial"; ctx.fillText(title.toUpperCase(), 86, y); line(y + 20); };
+    const section = (title: string, y: number) => { ctx.textAlign = "left"; ctx.fillStyle = gold; ctx.font = '700 18px "Times New Roman"'; ctx.fillText(title.toUpperCase(), 86, y); line(y + 20); };
     const field = (label: string, value: string, x: number, y: number, width = 470) => {
-      ctx.fillStyle = muted; ctx.font = "15px Arial"; ctx.fillText(label.toUpperCase(), x, y);
-      ctx.fillStyle = ink; ctx.font = "700 23px Arial"; wrap(value, x, y + 37, width, 30);
+      ctx.fillStyle = muted; ctx.font = '15px "Times New Roman"'; ctx.fillText(label.toUpperCase(), x, y);
+      ctx.fillStyle = ink; ctx.font = '700 23px "Times New Roman"'; wrap(value, x, y + 37, width, 30);
     };
     section("Thông tin cửa hàng", 363);
     field("Tên cửa hàng", data.storeName, 86, 423); field("Số điện thoại", data.storePhone, 670, 423);
@@ -93,11 +93,11 @@ export default function Home() {
     field("Tên khách hàng", data.customerName, 86, 692); field("Số điện thoại", data.customerPhone, 670, 692);
     field("Địa chỉ", data.customerAddress, 86, 789, 1068); section("Thời hạn bảo hành", 901);
     field("Ngày mua", formatDate(data.purchaseDate), 86, 961); field("Ngày hết hạn", formatDate(data.expiryDate), 670, 961);
-    section("Lưu ý bảo hành", 1081); ctx.fillStyle = ink; ctx.font = "20px Arial"; wrap(data.note || "Sản phẩm được bảo hành theo chính sách của cửa hàng.", 86, 1141, 1068, 32, 5);
+    section("Lưu ý bảo hành", 1081); ctx.fillStyle = ink; ctx.font = '20px "Times New Roman"'; wrap(data.note || "Sản phẩm được bảo hành theo chính sách của cửa hàng.", 86, 1141, 1068, 32, 5);
     ctx.fillStyle = "#f1ede4"; ctx.fillRect(86, 1332, 1068, 1);
-    ctx.textAlign = "center"; ctx.fillStyle = ink; ctx.font = "700 17px Arial"; ctx.fillText("KHÁCH HÀNG", 300, 1390); ctx.fillText("ĐẠI DIỆN CỬA HÀNG", 940, 1390);
-    ctx.fillStyle = muted; ctx.font = "italic 15px Arial"; ctx.fillText("(Ký và ghi rõ họ tên)", 300, 1420); ctx.fillText("(Ký, đóng dấu)", 940, 1420);
-    ctx.fillStyle = navy; ctx.fillRect(0, 1658, 1240, 96); ctx.fillStyle = "#fff"; ctx.font = "16px Arial";
+    ctx.textAlign = "center"; ctx.fillStyle = ink; ctx.font = '700 17px "Times New Roman"'; ctx.fillText("KHÁCH HÀNG", 300, 1390); ctx.fillText("ĐẠI DIỆN CỬA HÀNG", 940, 1390);
+    ctx.fillStyle = muted; ctx.font = 'italic 15px "Times New Roman"'; ctx.fillText("(Ký và ghi rõ họ tên)", 300, 1420); ctx.fillText("(Ký, đóng dấu)", 940, 1420);
+    ctx.fillStyle = navy; ctx.fillRect(0, 1658, 1240, 96); ctx.fillStyle = "#fff"; ctx.font = '16px "Times New Roman"';
     ctx.fillText(`${data.storePhone || "—"}  •  ${data.storeAddress || "—"}`, 620, 1708);
     const uri = canvas.toDataURL("image/jpeg", .95); const raw = atob(uri.split(",")[1]); const jpeg = Uint8Array.from(raw, c => c.charCodeAt(0));
     const pdf = createPdfFromJpeg(jpeg, canvas.width, canvas.height); const blob = new Blob([pdf], { type: "application/pdf" });
