@@ -3,7 +3,7 @@ import "./globals.css";
 import "./typography-fixes.css";
 
 export const metadata: Metadata = {
-  title: "Phiếu Bảo Hành | Watch Luxury",
+  title: "Phiếu Bảo Hành | Nhật Thành Watch Luxury",
   description: "Tạo và tải xuống phiếu bảo hành PDF chuyên nghiệp.",
   icons: {
     icon: "/favicon.svg",

@@ -10,22 +10,23 @@ type FormData = {
 
 type Product = { id: string; watchType: string; color: string };
 
-const DEFAULT_WARRANTY_NOTE = `📌 Lưu ý quan trọng:
-Đồng hồ chỉ phù hợp đeo khi đi mưa nhẹ, rửa tay nhanh.
-Không sử dụng khi tắm, bơi, xông hơi hoặc ngâm nước để đảm bảo độ bền và tránh hấp hơi.
-✅ Shop bảo hành khi:
-Máy bị lỗi kỹ thuật
-Máy không hoạt động đúng chức năng
-Pin bị lỗi (chai pin, hết pin khi mới sử dụng)
-❌ Shop Không bảo hành khi:
-Làm rơi, vỡ
-Vào nước
-Tự ý tháo máy
-Hỏng do sử dụng sai cách
-Pin hết do sử dụng bình thường`;
+const BRAND_NAME = "Nhật Thành Watch Luxury";
+
+const DEFAULT_WARRANTY_NOTE = `LƯU Ý QUAN TRỌNG:
+• Đồng hồ chỉ phù hợp khi đi mưa nhẹ hoặc rửa tay nhanh.
+• Không sử dụng khi tắm, bơi, xông hơi hoặc ngâm nước để hạn chế hấp hơi và bảo đảm độ bền.
+PHẠM VI BẢO HÀNH:
+• Lỗi kỹ thuật của bộ máy.
+• Sản phẩm không hoạt động đúng chức năng.
+• Pin bị lỗi, chai pin hoặc hết pin ngay khi mới sử dụng.
+TRƯỜNG HỢP KHÔNG BẢO HÀNH:
+• Sản phẩm bị rơi, vỡ hoặc vào nước.
+• Sản phẩm đã bị tự ý tháo mở hoặc sửa chữa.
+• Hư hỏng do sử dụng sai hướng dẫn.
+• Pin hết do hao mòn trong quá trình sử dụng thông thường.`;
 
 const initialData: FormData = {
-  storeName: "WATCH LUXURY",
+  storeName: BRAND_NAME,
   storePhone: "0862782551",
   storeAddress: "Cầu Giấy, Hà Nội",
   warehouseAddress: "Lạng Giang, Bắc Ninh",
@@ -136,12 +137,20 @@ export default function Home() {
     if (data.products.length > 4) { ctx.fillStyle = muted; ctx.font = 'italic 14px "Times New Roman"'; ctx.fillText(`+ ${data.products.length - 4} sản phẩm khác`, 165, 1058); }
     section("Thời hạn bảo hành", 1075);
     field("Ngày mua", formatDate(data.purchaseDate), 86, 1118); field("Ngày hết hạn", formatDate(data.expiryDate), 670, 1118);
-    section("Lưu ý bảo hành", 1200); ctx.fillStyle = ink; ctx.font = '12px "Times New Roman", "Segoe UI Emoji"'; wrap(data.note || DEFAULT_WARRANTY_NOTE, 86, 1240, 1068, 17, 15);
+    section("Lưu ý bảo hành", 1200);
+    let noteY = 1240;
+    for (const noteLine of (data.note || DEFAULT_WARRANTY_NOTE).split("\n").slice(0, 15)) {
+      const isHeading = noteLine.trim().endsWith(":");
+      ctx.fillStyle = isHeading ? gold : ink;
+      ctx.font = isHeading ? '700 13px "Times New Roman"' : '12px "Times New Roman"';
+      ctx.fillText(noteLine, 86, noteY);
+      noteY += isHeading ? 19 : 17;
+    }
     ctx.fillStyle = "#f1ede4"; ctx.fillRect(86, 1510, 1068, 1);
     ctx.textAlign = "center"; ctx.fillStyle = ink; ctx.font = '700 17px "Times New Roman"'; ctx.fillText("KHÁCH HÀNG", 300, 1552); ctx.fillText("ĐẠI DIỆN CỬA HÀNG", 940, 1552);
-    ctx.fillStyle = muted; ctx.font = 'italic 15px "Times New Roman"'; ctx.fillText("(Ký và ghi rõ họ tên)", 300, 1582); ctx.fillText("(Ký, đóng dấu)", 940, 1582);
+    ctx.fillStyle = muted; ctx.font = 'italic 15px "Times New Roman"'; ctx.fillText("(Ký và ghi rõ họ tên)", 300, 1582); ctx.fillText("(Ký và ghi rõ họ tên)", 940, 1582);
     ctx.fillStyle = navy; ctx.fillRect(0, 1658, 1240, 96); ctx.fillStyle = "#fff"; ctx.font = '16px "Times New Roman"';
-    ctx.fillText(`${data.storePhone || "—"}  •  ${data.storeAddress || "—"}`, 620, 1708);
+    ctx.fillText(`${BRAND_NAME}  •  ${data.storePhone || "—"}  •  ${data.storeAddress || "—"}`, 620, 1708);
     const uri = canvas.toDataURL("image/jpeg", .95); const raw = atob(uri.split(",")[1]); const jpeg = Uint8Array.from(raw, c => c.charCodeAt(0));
     const pdf = createPdfFromJpeg(jpeg, canvas.width, canvas.height); const blob = new Blob([pdf], { type: "application/pdf" });
     const link = document.createElement("a"); link.href = URL.createObjectURL(blob); link.download = `phieu-bao-hanh-${escapeFilename(data.customerName)}.pdf`; link.click(); URL.revokeObjectURL(link.href); setDownloading(false);
@@ -149,12 +158,12 @@ export default function Home() {
 
   return (
     <main>
-      <header className="topbar"><div className="brand"><span className="brandMark">W</span><span><b>WATCH LUXURY</b><small>Warranty Studio</small></span></div><span className="secure">● Dữ liệu chỉ lưu trên thiết bị</span></header>
+      <header className="topbar"><div className="brand"><span className="brandMark">N</span><span><b>NHẬT THÀNH WATCH LUXURY</b><small>Warranty Studio</small></span></div><span className="secure">● Dữ liệu chỉ lưu trên thiết bị</span></header>
       <section className="hero"><span className="eyebrow">QUẢN LÝ BẢO HÀNH</span><h1>Tạo phiếu bảo hành<br /><em>chỉ trong vài phút.</em></h1><p>Điền thông tin, xem trước và tải xuống bản PDF chuyên nghiệp sẵn sàng để in hoặc gửi cho khách hàng.</p></section>
       <form onSubmit={submit} className="workspace">
         <div className="formPanel">
           <div className="panelTitle"><span>01</span><div><h2>Thông tin phiếu</h2><p>Điền đầy đủ các trường bên dưới</p></div></div>
-          <fieldset><legend>Thông tin cửa hàng</legend><div className="grid two"><label>Tên cửa hàng<input required value={data.storeName} onChange={e => update("storeName", e.target.value)} placeholder="VD: Watch Luxury" /></label><label>Số điện thoại<input required type="tel" value={data.storePhone} onChange={e => update("storePhone", e.target.value)} placeholder="0901 234 567" /></label></div><div className="grid two"><label>Địa chỉ cửa hàng<textarea required rows={2} value={data.storeAddress} onChange={e => update("storeAddress", e.target.value)} placeholder="Địa chỉ đầy đủ" /></label><label>Địa chỉ kho<textarea required rows={2} value={data.warehouseAddress} onChange={e => update("warehouseAddress", e.target.value)} /></label></div></fieldset>
+          <fieldset><legend>Thông tin cửa hàng</legend><div className="grid two"><label>Tên cửa hàng<input required value={data.storeName} onChange={e => update("storeName", e.target.value)} placeholder="VD: Nhật Thành Watch Luxury" /></label><label>Số điện thoại<input required type="tel" value={data.storePhone} onChange={e => update("storePhone", e.target.value)} placeholder="0901 234 567" /></label></div><div className="grid two"><label>Địa chỉ cửa hàng<textarea required rows={2} value={data.storeAddress} onChange={e => update("storeAddress", e.target.value)} placeholder="Địa chỉ đầy đủ" /></label><label>Địa chỉ kho<textarea required rows={2} value={data.warehouseAddress} onChange={e => update("warehouseAddress", e.target.value)} /></label></div></fieldset>
           <fieldset><legend>Thông tin khách hàng</legend><div className="grid two"><label>Tên khách hàng<input required value={data.customerName} onChange={e => update("customerName", e.target.value)} placeholder="Nguyễn Văn An" /></label><label>Số điện thoại<input required type="tel" value={data.customerPhone} onChange={e => update("customerPhone", e.target.value)} placeholder="0987 654 321" /></label></div><label>Địa chỉ khách hàng<textarea required rows={2} value={data.customerAddress} onChange={e => update("customerAddress", e.target.value)} placeholder="Địa chỉ đầy đủ" /></label></fieldset>
           <fieldset className="productsFieldset"><legend>Thông tin sản phẩm</legend><div className="productList">{data.products.length === 0 && <p className="emptyProducts">Chưa có sản phẩm. Nhấn “Thêm sản phẩm” để bắt đầu.</p>}{data.products.map((product, index) => <div className="productRow" key={product.id}><span className="productNumber">{index + 1}</span><label>Loại đồng hồ<input required value={product.watchType} onChange={e => updateProduct(product.id, "watchType", e.target.value)} placeholder="VD: Đồng hồ cơ" /></label><label>Màu<input required value={product.color} onChange={e => updateProduct(product.id, "color", e.target.value)} placeholder="VD: Bạc" /></label><button type="button" className="removeProduct" onClick={() => removeProduct(product.id)} aria-label={`Xóa sản phẩm ${index + 1}`}>×</button></div>)}</div><button type="button" className="addProduct" onClick={addProduct}>＋ Thêm sản phẩm</button></fieldset>
           <fieldset><legend>Thời hạn &amp; điều khoản</legend><div className="grid two"><label>Ngày mua<input required type="date" value={data.purchaseDate} onChange={e => update("purchaseDate", e.target.value)} /></label><label>Ngày hết hạn<input required type="date" min={data.purchaseDate} value={data.expiryDate} onChange={e => update("expiryDate", e.target.value)} /></label></div><label>Lưu ý bảo hành<textarea rows={14} value={data.note} onChange={e => update("note", e.target.value)} /></label></fieldset>
@@ -162,13 +171,18 @@ export default function Home() {
         </div>
         <aside className="previewPanel"><div className="previewHeading"><div><span>02</span><div><h2>Xem trước</h2><p>Cập nhật theo thời gian thực</p></div></div><b>KHỔ A4</b></div>
           <div className="paper"><div className="paperHead"><strong>{data.storeName || "TÊN CỬA HÀNG"}</strong><small>UY TÍN TẠO NÊN GIÁ TRỊ</small><h3>PHIẾU BẢO HÀNH</h3><p>MÃ PHIẾU: {warrantyCode}</p></div>
-            <div className="paperBody"><PaperSection title="Thông tin cửa hàng"><PaperField label="Tên cửa hàng" value={data.storeName} /><PaperField label="Số điện thoại" value={data.storePhone} /><PaperField label="Địa chỉ cửa hàng" value={data.storeAddress} /><PaperField label="Địa chỉ kho" value={data.warehouseAddress} /></PaperSection><PaperSection title="Thông tin khách hàng"><PaperField label="Tên khách hàng" value={data.customerName} /><PaperField label="Số điện thoại" value={data.customerPhone} /><PaperField wide label="Địa chỉ" value={data.customerAddress} /></PaperSection><PaperSection title="Thông tin sản phẩm"><div className="previewProducts"><div className="previewProductHead"><b>STT</b><b>Loại đồng hồ</b><b>Màu</b></div>{data.products.length === 0 ? <div className="previewProductEmpty">Chưa có sản phẩm</div> : data.products.map((product, index) => <div className="previewProductRow" key={product.id}><span>{index + 1}</span><b>{product.watchType || "—"}</b><span>{product.color || "—"}</span></div>)}</div></PaperSection><PaperSection title="Thời hạn bảo hành"><PaperField label="Ngày mua" value={formatDate(data.purchaseDate)} /><PaperField label="Ngày hết hạn" value={formatDate(data.expiryDate)} /></PaperSection><PaperSection title="Lưu ý bảo hành"><p className="note">{data.note || DEFAULT_WARRANTY_NOTE}</p></PaperSection><div className="sign"><div><b>KHÁCH HÀNG</b><small>(Ký và ghi rõ họ tên)</small></div><div><b>ĐẠI DIỆN CỬA HÀNG</b><small>(Ký, đóng dấu)</small></div></div></div><div className="paperFoot">{data.storePhone || "—"} • {data.storeAddress || "—"}</div></div>
+            <div className="paperBody"><PaperSection title="Thông tin cửa hàng"><PaperField label="Tên cửa hàng" value={data.storeName} /><PaperField label="Số điện thoại" value={data.storePhone} /><PaperField label="Địa chỉ cửa hàng" value={data.storeAddress} /><PaperField label="Địa chỉ kho" value={data.warehouseAddress} /></PaperSection><PaperSection title="Thông tin khách hàng"><PaperField label="Tên khách hàng" value={data.customerName} /><PaperField label="Số điện thoại" value={data.customerPhone} /><PaperField wide label="Địa chỉ" value={data.customerAddress} /></PaperSection><PaperSection title="Thông tin sản phẩm"><div className="previewProducts"><div className="previewProductHead"><b>STT</b><b>Loại đồng hồ</b><b>Màu</b></div>{data.products.length === 0 ? <div className="previewProductEmpty">Chưa có sản phẩm</div> : data.products.map((product, index) => <div className="previewProductRow" key={product.id}><span>{index + 1}</span><b>{product.watchType || "—"}</b><span>{product.color || "—"}</span></div>)}</div></PaperSection><PaperSection title="Thời hạn bảo hành"><PaperField label="Ngày mua" value={formatDate(data.purchaseDate)} /><PaperField label="Ngày hết hạn" value={formatDate(data.expiryDate)} /></PaperSection><PaperSection title="Lưu ý bảo hành"><WarrantyNotePreview text={data.note || DEFAULT_WARRANTY_NOTE} /></PaperSection><div className="sign"><div><b>KHÁCH HÀNG</b><small>(Ký và ghi rõ họ tên)</small></div><div><b>ĐẠI DIỆN CỬA HÀNG</b><small>(Ký và ghi rõ họ tên)</small></div></div></div><div className="paperFoot">{BRAND_NAME} • {data.storePhone || "—"} • {data.storeAddress || "—"}</div></div>
         </aside>
       </form>
-      <footer>© {new Date().getFullYear()} Watch Luxury Warranty Studio <span>•</span> Thiết kế cho trải nghiệm chuyên nghiệp</footer>
+      <footer>© {new Date().getFullYear()} Nhật Thành Watch Luxury <span>•</span> Thiết kế cho trải nghiệm chuyên nghiệp</footer>
     </main>
   );
 }
 
 function PaperSection({ title, children }: { title: string; children: React.ReactNode }) { return <section className="paperSection"><h4>{title}</h4><div className="paperGrid">{children}</div></section>; }
 function PaperField({ label, value, wide = false }: { label: string; value: string; wide?: boolean }) { return <div className={wide ? "paperField wide" : "paperField"}><small>{label}</small><b>{value || "—"}</b></div>; }
+function WarrantyNotePreview({ text }: { text: string }) {
+  return <div className="note">{text.split("\n").map((line, index) => line.trim().endsWith(":")
+    ? <b className="noteHeading" key={index}>{line}</b>
+    : <span className="noteLine" key={index}>{line}</span>)}</div>;
+}
