@@ -27,7 +27,7 @@ TRƯỜNG HỢP KHÔNG BẢO HÀNH:
 
 const initialData: FormData = {
   storeName: BRAND_NAME,
-  storePhone: "0862782551",
+  storePhone: "0862780551",
   storeAddress: "Cầu Giấy, Hà Nội",
   warehouseAddress: "Lạng Giang, Bắc Ninh",
   customerName: "",
