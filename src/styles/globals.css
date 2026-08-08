@@ -18,7 +18,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 .topbar {
-  height: 76px;
+  height: 64px;
   padding: 0 max(5vw, 24px);
   background: #fff;
   border-bottom: 1px solid #e7e7e2;
@@ -33,8 +33,8 @@ body {
   color: var(--navy);
 }
 .brandMark {
-  width: 38px;
-  height: 38px;
+  width: 34px;
+  height: 34px;
   border: 1px solid var(--gold);
   border-radius: 50%;
   display: grid;
@@ -62,7 +62,7 @@ body {
   color: #4d8c6b;
 }
 .hero {
-  padding: 62px max(5vw, 24px) 56px;
+  padding: 36px max(5vw, 24px) 34px;
   background: var(--navy);
   color: white;
   position: relative;
@@ -83,8 +83,8 @@ body {
   color: #d5bd8d;
 }
 .hero h1 {
-  font: 400 clamp(36px, 5vw, 62px)/1.06 Georgia;
-  margin: 14px 0 18px;
+  font: 400 clamp(34px, 4.2vw, 52px) / 1.08 Georgia;
+  margin: 10px 0 12px;
   letter-spacing: -1px;
 }
 .hero h1 em {
@@ -92,8 +92,8 @@ body {
   font-weight: 400;
 }
 .hero p {
-  font-size: 15px;
-  line-height: 1.7;
+  font-size: 14px;
+  line-height: 1.55;
   color: #bfc9d5;
   max-width: 600px;
   margin: 0;
@@ -101,8 +101,8 @@ body {
 .workspace {
   display: grid;
   grid-template-columns: minmax(420px, 1fr) minmax(440px, 0.9fr);
-  gap: 30px;
-  padding: 40px max(5vw, 24px) 64px;
+  gap: 20px;
+  padding: 24px max(5vw, 24px) 42px;
   align-items: start;
 }
 .formPanel,
@@ -112,18 +112,18 @@ body {
   box-shadow: 0 8px 30px #26344a0c;
 }
 .formPanel {
-  padding: 30px;
+  padding: 22px;
 }
 .panelTitle,
 .previewHeading > div {
   display: flex;
-  gap: 14px;
+  gap: 10px;
   align-items: center;
 }
 .panelTitle > span,
 .previewHeading > div > span {
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background: var(--navy);
   color: white;
@@ -146,8 +146,8 @@ body {
 fieldset {
   border: 0;
   border-top: 1px solid var(--line);
-  padding: 24px 0 4px;
-  margin: 26px 0 0;
+  padding: 17px 0 2px;
+  margin: 19px 0 0;
 }
 legend {
   padding: 0 15px 0 0;
@@ -158,7 +158,7 @@ legend {
 }
 .grid {
   display: grid;
-  gap: 14px;
+  gap: 12px;
 }
 .two {
   grid-template-columns: 1fr 1fr;
@@ -169,19 +169,19 @@ label {
   font-weight: bold;
   color: #596273;
   letter-spacing: 0.3px;
-  margin: 0 0 14px;
+  margin: 0 0 10px;
 }
 input,
 textarea {
   display: block;
   width: 100%;
-  margin-top: 8px;
+  margin-top: 6px;
   border: 1px solid #dddcd6;
   border-radius: 3px;
   background: #fbfbf9;
   color: var(--ink);
   font: 14px Arial;
-  padding: 12px 13px;
+  padding: 10px 12px;
   outline: 0;
   transition: 0.2s;
 }
@@ -201,7 +201,7 @@ textarea:focus {
   border-radius: 3px;
   background: var(--gold);
   color: white;
-  padding: 15px;
+  padding: 13px;
   font: bold 13px Arial;
   letter-spacing: 0.5px;
   cursor: pointer;
@@ -221,10 +221,10 @@ textarea:focus {
   text-align: center;
   color: #9399a1;
   font-size: 10px;
-  margin: 12px 0 0;
+  margin: 8px 0 0;
 }
 .previewPanel {
-  padding: 24px;
+  padding: 18px;
   background: #ecece9;
   position: sticky;
   top: 18px;
@@ -233,7 +233,7 @@ textarea:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 .previewHeading b {
   font-size: 9px;
@@ -245,6 +245,7 @@ textarea:focus {
 }
 .paper {
   aspect-ratio: 210/297;
+  container-type: inline-size;
   background: #fbfaf7;
   box-shadow: 0 4px 22px #1b2a3d25;
   display: flex;
@@ -254,52 +255,53 @@ textarea:focus {
 .paperHead {
   background: var(--navy);
   border-bottom: 4px solid var(--gold);
-  height: 25%;
+  height: 15%;
   color: white;
   text-align: center;
-  padding: 6% 5%;
+  padding: 1.5% 5%;
 }
 .paperHead strong {
   display: block;
-  font: 700 clamp(11px, 1.2vw, 18px) Georgia;
-  letter-spacing: 2px;
+  font: 700 3.1cqw Georgia;
+  letter-spacing: 0.4cqw;
 }
 .paperHead small {
   display: block;
   color: #d8c59f;
-  font-size: clamp(5px, 0.5vw, 8px);
-  letter-spacing: 1px;
-  margin-top: 5px;
+  font-size: 1.55cqw;
+  letter-spacing: 0.2cqw;
+  margin-top: 0.4cqw;
 }
 .paperHead h3 {
-  font: 700 clamp(20px, 2.4vw, 38px) Georgia;
-  margin: 7% 0 2%;
+  font: 700 5.25cqw Georgia;
+  margin: 1.5% 0 0;
 }
 .paperHead p {
-  font-size: clamp(6px, 0.65vw, 10px);
+  font-size: 1.65cqw;
   color: #dfe5ec;
   margin: 0;
 }
 .paperBody {
-  padding: 5% 7%;
+  min-height: 0;
+  padding: 3% 6%;
   flex: 1;
 }
 .paperSection {
-  margin-bottom: 4%;
+  margin-bottom: 1.8%;
 }
 .paperSection h4 {
-  font-size: clamp(6px, 0.7vw, 10px);
-  letter-spacing: 1px;
+  font-size: 2cqw;
+  letter-spacing: 0.2cqw;
   text-transform: uppercase;
   color: var(--gold);
-  margin: 0 0 3%;
+  margin: 0 0 1.5%;
   border-bottom: 1px solid #d9d5cb;
-  padding-bottom: 2%;
+  padding-bottom: 1%;
 }
 .paperGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px 8%;
+  gap: 1.2cqw 6%;
 }
 .paperField.wide,
 .note {
@@ -309,18 +311,18 @@ textarea:focus {
   display: block;
   text-transform: uppercase;
   color: #818794;
-  font-size: clamp(5px, 0.55vw, 8px);
-  margin-bottom: 4px;
+  font-size: 1.55cqw;
+  margin-bottom: 0.35cqw;
 }
 .paperField b {
   display: block;
   color: var(--ink);
-  font-size: clamp(7px, 0.85vw, 12px);
-  line-height: 1.35;
+  font-size: 2.45cqw;
+  line-height: 1.2;
   min-height: 1em;
 }
 .note {
-  font-size: clamp(6px, 0.75vw, 11px);
+  font-size: 1.8cqw;
   line-height: 1.55;
   margin: 0;
   white-space: pre-wrap;
@@ -330,15 +332,15 @@ textarea:focus {
   grid-template-columns: 1fr 1fr;
   text-align: center;
   border-top: 1px solid #e2ded5;
-  padding-top: 4%;
-  margin-top: 7%;
+  padding-top: 2%;
+  margin-top: 2%;
 }
 .sign b {
-  font-size: clamp(6px, 0.65vw, 10px);
+  font-size: 1.9cqw;
 }
 .sign small {
   display: block;
-  font: italic clamp(5px, 0.55vw, 8px) Arial;
+  font: italic 1.55cqw Arial;
   color: #8a9099;
   margin-top: 5px;
 }
@@ -347,14 +349,14 @@ textarea:focus {
   background: var(--navy);
   color: white;
   text-align: center;
-  font-size: clamp(5px, 0.58vw, 9px);
+  font-size: 1.7cqw;
   padding: 3.5% 6%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 footer {
-  padding: 23px max(5vw, 24px);
+  padding: 17px max(5vw, 24px);
   background: #0b1b2f;
   color: #7f8b99;
   text-align: center;
@@ -372,67 +374,28 @@ footer span {
   .previewPanel {
     position: static;
   }
-  .paperHead strong {
-    font-size: 2vw;
-  }
-  .paperHead h3 {
-    font-size: 4vw;
-  }
-  .paperHead p,
-  .paperSection h4 {
-    font-size: 1.2vw;
-  }
-  .paperField small,
-  .sign small,
-  .paperFoot {
-    font-size: 1vw;
-  }
-  .paperField b,
-  .note,
-  .sign b {
-    font-size: 1.4vw;
-  }
 }
 @media (max-width: 560px) {
   .topbar {
-    height: 66px;
+    height: 60px;
   }
   .secure {
     display: none;
   }
   .hero {
-    padding-top: 44px;
-    padding-bottom: 44px;
+    padding-top: 28px;
+    padding-bottom: 28px;
   }
   .workspace {
-    padding: 22px 14px 44px;
+    padding: 16px 12px 30px;
   }
   .formPanel {
-    padding: 22px 18px;
+    padding: 18px 15px;
   }
   .two {
     grid-template-columns: 1fr;
   }
   .previewPanel {
-    padding: 13px;
-  }
-  .paperHead strong {
-    font-size: 3vw;
-  }
-  .paperHead h3 {
-    font-size: 5.5vw;
-  }
-  .paperSection h4 {
-    font-size: 1.7vw;
-  }
-  .paperField small,
-  .sign small,
-  .paperFoot {
-    font-size: 1.4vw;
-  }
-  .paperField b,
-  .note,
-  .sign b {
-    font-size: 2vw;
+    padding: 11px;
   }
 }
