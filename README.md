@@ -22,6 +22,16 @@ npm run preview
 
 Website tĩnh được tạo trong thư mục `dist`.
 
+## Cấu trúc mã nguồn
+
+```text
+src/
+├── components/       # Component giao diện có thể tái sử dụng
+├── styles/           # CSS toàn cục và CSS theo nhóm component
+├── App.tsx           # Component ứng dụng chính
+└── main.tsx          # Entry point của Vite
+```
+
 ## GitHub Pages
 
 Mỗi lần có commit mới trên nhánh `main`, workflow `.github/workflows/deploy-pages.yml` sẽ build và triển khai website lên:
